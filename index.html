@@ -1,0 +1,100 @@
+<!doctype html>
+<html ng-app="app">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>task-5</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap.js"></script>
+    <script type="text/javascript" src="app/js/app.js"></script>
+    <script type="text/javascript" src="app/js/controllers/weather-ctrl.js"></script>
+    <script type="text/javascript" src="app/js/controllers/day-ctrl.js"></script>
+    <script type="text/javascript" src="app/js/directives/day-directive.js"></script>
+    <script type="text/javascript" src="app/js/services/weather-service.js"></script>
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="app/css/style.css">    
+  </head>
+
+  <body ng-app="app">
+
+    <div class="container" ng-controller="WeatherCtrl">
+      <div class="row jumbotron">
+        <div class="col-md-4 pic-container">
+          <img src="app/pix/weather.png">
+        </div>
+        <div class="col-md-8">
+          <h1>Training Weather App</h1>
+          <p>AngularJS custom services.</p>
+        </div>
+      </div>
+
+      <div class="btn-box">
+        <div class="left-box"
+          <form class="form-inline">
+            <select class="form-control" ng-model="city" required ng-init="init()">
+              <option ng-repeat="c in cities" value="{{c.value}}">{{c.name}}</option>
+            </select>
+          </form>
+        </div>
+        <div class="right-box">
+          <button class="btn btn-success" data-toggle="modal" data-target="#cityModal">Add a new city</button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="cityModal" tabindex="-1" role="dialog" aria-labelledby="cityLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="cityLabel">Cities</h4>
+              </div>
+              <div class="modal-body">
+                <select class="form-control" ng-model="cityAdd" required ng-init="initCity()">
+                  <option ng-repeat="city in citiesToAdd" value="{{city}}">{{city.name}}</option>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addCity(cityAdd)">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <br>
+
+      <div ng-controller="DayCtrl">
+        <h3>
+          {{responseInfo.name}}, {{responseInfo.country}}
+          <small>Lon: {{responseInfo.coord.lon | number:2}} Lat: {{responseInfo.coord.lat | number:2}}</small>
+        </h3>
+      </div>
+
+
+      <!-- <div ng-include src="'weather.html'" ng-controller="DayCtrl" ng-init="number=0"></div> -->
+      <day number="0"></day>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <day number="1"></day>
+          <!-- <div ng-include src="'weather.html'" ng-controller="DayCtrl" ng-init="number=1"></div> -->
+        </div>
+        <div class="col-xs-4">
+          <day number="2"></day>
+          <!-- <div ng-include src="'weather.html'" ng-controller="DayCtrl" ng-init="number=2"></div> -->
+        </div>
+        <div class="col-xs-4">
+          <day number="3"></day>
+          <!-- <div ng-include src="'weather.html'" ng-controller="DayCtrl" ng-init="number=3"></div> -->
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>

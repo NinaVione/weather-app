@@ -1,0 +1,20 @@
+ .pic-container > img{
+    width: 100%;
+ }
+
+ .btn-box > .left-box {
+    float: left;
+ }
+
+ .btn-box > .right-box {
+    float: right;
+ }
+
+ .container > div:first-child {
+    margin-right: 0;
+    margin-left: 0;
+ }
+
+ .weather {
+    clear: both;
+ }
